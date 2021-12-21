@@ -50,7 +50,7 @@ RUN curl -fLo /etc/udev/rules.d/99-platformio-udev.rules --create-dirs https://r
     && usermod -a -G plugdev $USERNAME
 
 USER $USERNAME
-# RUN python3 -c "$(curl -fsSL https://raw.githubusercontent.com/platformio/platformio/develop/scripts/get-platformio.py)"
+RUN python3 -c "$(curl -fsSL https://raw.githubusercontent.com/platformio/platformio/develop/scripts/get-platformio.py)"
 
 RUN mkdir -p /home/vscode/projects \
    && cd /home/vscode/projects
@@ -58,19 +58,6 @@ RUN mkdir -p /home/vscode/projects \
 
 RUN mkdir -p /home/vscode/FixUps
 COPY FixUps /home/vscode/FixUps
+# copy FixUps/projects/WisBlock_MySensors/lib/applib/src/loraCredentials.h /home/vscode/projects/MySensors_Lora/WisBlock_MySensors/lib/applib/src
 
-USER root
-RUN chown -R vscode /home/vscode/FixUps \
-   && chgrp -R vscode /home/vscode/FixUps \
-   && chmod 755 /home/vscode/FixUps/copyFixes \
-   && chmod 755 /home/vscode/FixUps/gitFiles \
-   && chmod 755 /home/vscode/FixUps/bldFiles \
-   && echo "export PATH=$PATH:/home/vscode/.platformio/penv/bin" >> /home/vscode/.profile
 
-USER $USERNAME
-
-# RUN pio platform install nordicnrf52
-
-##copy FixUps/projects/WisBlock_MySensors/lib/applib/src/loraCredentials.h /home/vscode/projects/MySensors_Lora/WisBlock_MySensors/lib/applib/src
-
-WORKDIR /home/vscode

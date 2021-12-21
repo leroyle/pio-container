@@ -1,0 +1,66 @@
+
+startDir=`pwd`
+
+echo "Git app"
+sleep 3
+cd ../projects \
+&& git clone https://github.com/leroyle/MySensors_Lora.git \
+&& mv MySensors_Lora/WisBlock_MySensors .
+
+
+
+PROJ_SRCDIR=/home/vscode/FixUps/projects/WisBlock_MySensors/lib/applib/src
+PROJ_DESTDIR=/home/vscode/projects/MySensors_Lora/WisBlock_MySensors/lib/applib/src
+
+if [ -d $PROJ_DESTDIR ]
+then
+cp -r $PROJ_SRCDIR/* $PROJ_DESTDIR
+cd $startDir
+cp bldFiles /home/vscode/projects/MySensors_Lora/WisBlock_MySensors
+else
+ echo "Destination: $PROJ_DESTDIR does not exist"
+    
+fi
+
+
+echo "pio install platform files"
+sleep 3
+
+# pio platform install nordicnrf52
+pio platform install --with-package framework-arduinoadafruitnrf52 nordicnrf52
+
+echo "add Wisblock boards files"
+
+#platforms
+sleep 3
+echo -n "Update Platforms ... "
+PLAT_SRCDIR=/home/vscode/FixUps/platformio/platforms/nordicnrf52/boards
+
+PLAT_DESTDIR=/home/vscode/.platformio/platforms/nordicnrf52/boards
+
+if [ -d $PLAT_DESTDIR ]
+then
+cp -r $PLAT_SRCDIR/* $PLAT_DESTDIR
+ echo "Updated.."
+else
+ echo "Destination: $PLAT_DESTDIR does not exist"
+
+fi
+
+
+echo -n "Update packages ... "
+sleep 3
+
+SRCDIR=/home/vscode/FixUps/platformio/packages/framework-arduinoadafruitnrf52/variants/WisCore_RAK4631_Board
+
+DESTDIR=/home/vscode/.platformio/packages/framework-arduinoadafruitnrf52/variants
+
+if [ -d $DESTDIR ]
+then
+cp -r $SRCDIR $DESTDIR
+ echo "Updated.."
+else
+ echo "Destination: $DESTDIR does not exist"
+
+fi
+

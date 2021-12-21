@@ -1,0 +1,25 @@
+
+
+if [ $# -lt 1 ]
+then
+  echo "usage: bldFiles [-c, -b, -u] "
+  exit
+fi
+
+
+if [ $1 == "-c" ]
+then
+   echo "Clean Project ..."
+   sleep 3
+   pio run -t clean 2>&1 | tee clean.log
+elif [ $1 == "-b" ]
+then
+   echo "Build Project ..."
+   sleep 3
+   pio run -v -e wiscore_rak4631_Gateway 2>&1 | tee build.log
+elif [ $1 == "-u" ]
+then
+   echo "Upload Prject App ..."
+   sleep 3
+   pio run -e wiscore_rak4631_Gateway -t upload
+fi
