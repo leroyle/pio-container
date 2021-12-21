@@ -10,13 +10,13 @@ cd ../projects \
 
 
 PROJ_SRCDIR=/home/vscode/FixUps/projects/WisBlock_MySensors/lib/applib/src
-PROJ_DESTDIR=/home/vscode/projects/MySensors_Lora/WisBlock_MySensors/lib/applib/src
+PROJ_DESTDIR=/home/vscode/projects/WisBlock_MySensors/lib/applib/src
 
 if [ -d $PROJ_DESTDIR ]
 then
 cp -r $PROJ_SRCDIR/* $PROJ_DESTDIR
 cd $startDir
-cp bldFiles /home/vscode/projects/MySensors_Lora/WisBlock_MySensors
+cp bldFiles /home/vscode/projects/WisBlock_MySensors
 else
  echo "Destination: $PROJ_DESTDIR does not exist"
     

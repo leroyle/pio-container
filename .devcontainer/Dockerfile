@@ -31,6 +31,12 @@ RUN apt-get update \
         srecord \
         xz-utils \
 	vim \
+	# for JLinkGUIServerEXE
+	libsm6 \
+	libxrender1 \
+	libxrandr2 \
+	libxfixes3 \
+	libxcursor1 \
     # Clean up
     && apt-get autoremove -y \
     && apt-get clean -y \
@@ -62,7 +68,6 @@ COPY FixUps /home/vscode/FixUps
 USER root
 RUN chown -R vscode /home/vscode/FixUps \
    && chgrp -R vscode /home/vscode/FixUps \
-   && chmod 755 /home/vscode/FixUps/copyFixes \
    && chmod 755 /home/vscode/FixUps/gitFiles \
    && chmod 755 /home/vscode/FixUps/bldFiles \
    && echo "export PATH=$PATH:/home/vscode/.platformio/penv/bin" >> /home/vscode/.profile
