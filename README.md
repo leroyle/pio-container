@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # PlatformIO Devcontainer
 
 ## [devcontainer.json](./.devcontainer/devcontainer.json)
@@ -17,3 +18,7 @@
 ## [settings.json](./.vscode/settings.json)
 
 * Sets the PIO Home port to 8008 which is the port that's exposed in [devcontainer.json](./.devcontainer/devcontainer.json)
+=======
+# pio-container
+Docker Container for platformio 
+>>>>>>> 1528debfbabf551bb34eeb8421cb8fb20bad88f7
