@@ -1,22 +1,22 @@
 
 startDir=`pwd`
+HomeDir=/home/vscode
 
 echo "Git app"
 sleep 3
-cd ../projects \
+cd projects \
 && git clone https://github.com/leroyle/MySensors_Lora.git \
 && mv MySensors_Lora/WisBlock_MySensors .
+cp $HomeDir/FixUps/bldFiles $HomeDir/projects/WisBlock_MySensors
 
 
 
-PROJ_SRCDIR=/home/vscode/FixUps/projects/WisBlock_MySensors/lib/applib/src
-PROJ_DESTDIR=/home/vscode/projects/WisBlock_MySensors/lib/applib/src
+PROJ_SRCDIR=$HomeDir/FixUps/projects/WisBlock_MySensors/lib/applib/src
+PROJ_DESTDIR=$HomeDir/projects/WisBlock_MySensors/lib/applib/src
 
 if [ -d $PROJ_DESTDIR ]
 then
 cp -r $PROJ_SRCDIR/* $PROJ_DESTDIR
-cd $startDir
-cp bldFiles /home/vscode/projects/WisBlock_MySensors
 else
  echo "Destination: $PROJ_DESTDIR does not exist"
     
@@ -34,9 +34,9 @@ echo "add Wisblock boards files"
 #platforms
 sleep 3
 echo -n "Update Platforms ... "
-PLAT_SRCDIR=/home/vscode/FixUps/platformio/platforms/nordicnrf52/boards
+PLAT_SRCDIR=$HomeDir/FixUps/platformio/platforms/nordicnrf52/boards
 
-PLAT_DESTDIR=/home/vscode/.platformio/platforms/nordicnrf52/boards
+PLAT_DESTDIR=$HomeDir/.platformio/platforms/nordicnrf52/boards
 
 if [ -d $PLAT_DESTDIR ]
 then
@@ -51,9 +51,9 @@ fi
 echo -n "Update packages ... "
 sleep 3
 
-SRCDIR=/home/vscode/FixUps/platformio/packages/framework-arduinoadafruitnrf52/variants/WisCore_RAK4631_Board
+SRCDIR=$HomeDir/FixUps/platformio/packages/framework-arduinoadafruitnrf52/variants/WisCore_RAK4631_Board
 
-DESTDIR=/home/vscode/.platformio/packages/framework-arduinoadafruitnrf52/variants
+DESTDIR=$HomeDir/.platformio/packages/framework-arduinoadafruitnrf52/variants
 
 if [ -d $DESTDIR ]
 then

@@ -70,7 +70,9 @@ RUN chown -R vscode /home/vscode/FixUps \
    && chgrp -R vscode /home/vscode/FixUps \
    && chmod 755 /home/vscode/FixUps/gitFiles \
    && chmod 755 /home/vscode/FixUps/bldFiles \
-   && echo "export PATH=$PATH:/home/vscode/.platformio/penv/bin" >> /home/vscode/.profile
+   && echo "export PATH=$PATH:/home/vscode/.platformio/penv/bin" >> /home/vscode/.profile \
+   && echo "cd" >> /home/vscode/.bashrc \
+   && mv /home/vscode/FixUps/gitFiles /home/vscode
 
 USER $USERNAME
 
